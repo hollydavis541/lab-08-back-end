@@ -70,19 +70,6 @@ function handleWeather(request, response) {
 
 }
 
-app.get('/add', (request, response)=> {
-  let firstName = request.query.first;
-  let lastName = request.query.last;
-  let SQL = 'INSERT INTO people (first_name, last_name) VALUES($1, $2)';
-  let safeValues = [firstName, lastName];
-  client.query(SQL, safeValues)
-    .then( results => {
-      response.status(200).json(results);
-    })
-    .catch( error => errorHandler(error));
-
-});
-
 // CONSTRUCTORS
 
 function Location(city, geoData) {
