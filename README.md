@@ -30,9 +30,9 @@ This is a Node.js server that uses express, dotenv, and cors packages. The serve
 
 ## Change Log
 
-11-07-2019 ______ AM - placeholder
+11-07-2019 08:45 AM - database setup and table created
 
-11-07-2019 ______ AM - placeholder
+11-07-2019 10:30 AM - checks for location in database and saves location to database if not already there
 
 11-07-2019 ______ AM - placeholder
 
@@ -50,15 +50,14 @@ This is a Node.js server that uses express, dotenv, and cors packages. The serve
 Number and name of feature: Feature #1 Database  
 Estimate of time needed to complete: 30 minutes 
 Start time: 08:15 AM
-Finish time:  
-Actual time needed to complete:  
+Finish time: 08:45 AM
+Actual time needed to complete: 30 minutes
 
 Number and name of feature: Feature #2 Server  
-Estimate of time needed to complete:  
-Start time:  
-Finish time:  
-Actual time needed to complete:  
-
+Estimate of time needed to complete: 60 minutes
+Start time: 08:45 AM
+Finish time: 10:30 AM
+Actual time needed to complete: 105 minutes
 
 Number and name of feature: Feature #3 Deploy  
 Estimate of time needed to complete:  
