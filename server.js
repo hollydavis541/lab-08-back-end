@@ -38,8 +38,8 @@ function handleLocation(request,response) {
   //Note: Once I've fetched data from API, I want to save it in my DB, so i need a db save function.
   //this save function should be a method on the specific location object instance
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.data}&key=${process.env.GEOCODE_API_KEY}`;
-
-  superagent.get(url)
+  superagent
+    .get(url)
     .then( data=> {
       const geoData = data.body;
       const location = new Location(request.query.data, geoData);
@@ -78,6 +78,15 @@ app.use('*', notFoundHandler);
 app.use(errorHandler);
 
 // HELPER FUNCTIONS
+
+function checkDB(location) {
+  let SQL = `SELECT FROM locations WHERE latitude=${location.latitude} AND longitude=${location.longitude}`;
+  client.query(SQL)
+    .then( results => {
+      console.log(results)
+    })
+    .catch(error => errorHandler(error));
+}
 
 function Location(city, geoData) {
   this.search_query = city;
