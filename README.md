@@ -1,6 +1,6 @@
 # Code 301 Lab 08 - Persistence with a SQL database
 
-**Author**: David Vloedman and Holly Davis
+**Author**: David Vloedman and Holly Davis  
 **Version**: 1.0.0
 <!-- (increment the patch/fix version number if you make more commits past your first submission) -->
 
