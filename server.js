@@ -94,7 +94,10 @@ function errorHandler(error,request,response) {
   response.status(500).send(error);
 }
 
-
-
 // Make sure the server is listening for requests
-app.listen(PORT, () => console.log(`App is listening on ${PORT}`) );
+client.connect()
+  .then( ()=> {
+    app.listen(PORT, ()=> {
+      console.log('server and db are up, listening on port ', PORT);
+    });
+  });

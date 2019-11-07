@@ -48,8 +48,8 @@ This is a Node.js server that uses express, dotenv, and cors packages. The serve
 
 
 Number and name of feature: Feature #1 Database  
-Estimate of time needed to complete:  
-Start time:  
+Estimate of time needed to complete: 30 minutes 
+Start time: 08:15 AM
 Finish time:  
 Actual time needed to complete:  
 
