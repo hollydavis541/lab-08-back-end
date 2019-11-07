@@ -34,15 +34,17 @@ app.get('/location', handleLocation);
 app.get('/weather', handleWeather);
 
 //Route Handlers
+
 function handleLocation(request,response) {
   //Note: Once I've fetched data from API, I want to save it in my DB, so i need a db save function.
   //this save function should be a method on the specific location object instance
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.data}&key=${process.env.GEOCODE_API_KEY}`;
-
-  superagent.get(url)
+  superagent
+    .get(url)
     .then( data=> {
       const geoData = data.body;
       const location = new Location(request.query.data, geoData);
+      if (!isLocationInDB(location)) saveLocation(location);
       response.send(location);
       response.send(data);
     })
@@ -68,6 +70,28 @@ function handleWeather(request, response) {
 
 }
 
+app.get('/add', (request, response)=> {
+  let firstName = request.query.first;
+  let lastName = request.query.last;
+  let SQL = 'INSERT INTO people (first_name, last_name) VALUES($1, $2)';
+  let safeValues = [firstName, lastName];
+  client.query(SQL, safeValues)
+    .then( results => {
+      response.status(200).json(results);
+    })
+    .catch( error => errorHandler(error));
+
+});
+
+// CONSTRUCTORS
+
+function Location(city, geoData) {
+  this.search_query = city;
+  this.formatted_query = geoData.results[0].formatted_address;
+  this.latitude = geoData.results[0].geometry.location.lat;
+  this.longitude = geoData.results[0].geometry.location.lng;
+}
+
 function Weather(day) {
   this.forecast = day.summary;
   this.time = new Date(day.time * 1000).toString().slice(0,15);
@@ -79,14 +103,28 @@ app.use(errorHandler);
 
 // HELPER FUNCTIONS
 
-function Location(city, geoData) {
-  this.search_query = city;
-  this.formatted_query = geoData.results[0].formatted_address;
-  this.latitude = geoData.results[0].geometry.location.lat;
-  this.longitude = geoData.results[0].geometry.location.lng;
+function saveLocation(location) {
+  let safeValues = [
+    location.search_query,
+    location.formatted_query,
+    location.latitude,
+    location.longitude
+  ];
+  let SQL = 'INSERT INTO locations (search_query, formatted_query, latitude, longitude) VALUES($1, $2, $3, $4)';
+  client.query(SQL, safeValues).catch( error => errorHandler(error));
 }
 
-function  notFoundHandler(request,response) {
+function isLocationInDB(location) {
+  let SQL = `SELECT FROM locations WHERE latitude=${location.latitude} AND longitude=${location.longitude}`;
+  client
+    .query(SQL)
+    .then(results => {
+      return results.rowCount === 0;
+    })
+    .catch(error => errorHandler(error));
+}
+
+function notFoundHandler(request,response) {
   response.status(404).send('huh?');
 }
 
