@@ -1,7 +1,7 @@
 # Code 301 Lab 08 - Persistence with a SQL database
 
 **Author**: David Vloedman and Holly Davis  
-**Version**: 1.0.0
+**Version**: 1.2.0
 <!-- (increment the patch/fix version number if you make more commits past your first submission) -->
 
 ## Overview
@@ -34,9 +34,7 @@ This is a Node.js server that uses express, dotenv, and cors packages. The serve
 
 11-07-2019 10:30 AM - checks for location in database and saves location to database if not already there
 
-11-07-2019 ______ AM - placeholder
-
-11-07-2019 ______ AM - placeholder
+11-07-2019 11:30 AM - database and server deployed to Heroku
 
 
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
@@ -60,13 +58,7 @@ Finish time: 10:30 AM
 Actual time needed to complete: 105 minutes
 
 Number and name of feature: Feature #3 Deploy  
-Estimate of time needed to complete:  
-Start time:  
-Finish time:  
-Actual time needed to complete:  
-
-Number and name of feature: Feature #4 Stretch  
-Estimate of time needed to complete:  
-Start time:  
-Finish time:  
-Actual time needed to complete:  
+Estimate of time needed to complete: 45 minutes
+Start time: 11:00 AM
+Finish time: 11:30 AM
+Actual time needed to complete: 30 minutes
